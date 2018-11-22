@@ -44,8 +44,8 @@ class Trafic {
 	//interiorComodo= interiorComodo.peso(),interiorComodo.capacidad()
 	 
 	method color() {return "blanco"}
-	method capacidad() { return interior }
-	method velocidad() {return  motor }
+	method capacidad() { return interior.capacidad() }
+	method velocidad() {return  motor.velocidad() }
 	method peso() { return interior.peso() + motor.peso()  + 4000 }
 }	 
 	

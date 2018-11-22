@@ -28,7 +28,7 @@ describe "group of tests" {
 		remiseria1.agregarAFlota(distinto)
 		remiseria1.pesoTotalFlota()
 		remiseria1.esRecomendable() 
-	//	remiseria1.capacidadTotalYendoA(140)
+		remiseria1.capacidadTotalYendoA(140)
 		remiseria1.colorDelAutoMasRapido()
 		
 		remiseria2.agregarAFlota(cachito)
@@ -69,12 +69,12 @@ describe "group of tests" {
 	test "testResmiseria2EsRecomendable" {
 		assert.notThat(false)
 	}
-	/*test "testResmiseria1CapacidadTotalYendoA(140)" {
+	test "testResmiseria1CapacidadTotalYendoA(140)" {
 		assert.equals(17,remiseria1.capacidadTotalYendoA(140))
 	}
 	test "testResmiseria2CapacidadTotalYendoA(140)" {
 		assert.equals(4,remiseria2.capacidadTotalYendoA(140))
-	}*/
+	}
 	
 	test "testResmiseria1ColorDelAutoMasRapido" {
 		assert.equals("beige",remiseria1.colorDelAutoMasRapido())

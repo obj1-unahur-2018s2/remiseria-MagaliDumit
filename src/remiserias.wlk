@@ -15,8 +15,8 @@ class Remiseria {
 	}
 	method capacidadTotalYendoA(velocidad) { return
 		//var flotaRapidos = #{}
-		flota.all({ vehiculo => vehiculo.velocidad() >= velocidad }
-		).sum().capacidad() 
+		flota.filter({ vehiculo => vehiculo.velocidad() >= velocidad }
+		).sum({vehiculo => vehiculo.capacidad()})
 	} 
 	
 	method colorDelAutoMasRapido() {
