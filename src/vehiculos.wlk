@@ -5,6 +5,8 @@ class Autos {
 	var property velocidad = 0
 	var property peso = 0
 	var property color = ""
+	
+	
 }
 
 

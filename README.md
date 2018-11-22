@@ -60,3 +60,29 @@ A partir de esto, agregar lo que haga falta para poder preguntarle a una remiser
   - cuánto pagarle a un auto, de acuerdo a los viajes que hizo para esa remisería.
     Cada remisería establece un valor por kilómetro, y un mínimo para cada viaje.
     Por ejemplo, si una remisería establece 3 pesos por km y 30 de mínimo por viaje, entonces un viaje de 7 km lo paga 30  pesos (porque 3 x 7 = 21 no llega a 30), y un viaje de 25 km lo paga 75 pesos (3 x 25 = 75 supera el mínimo de 30).
+
+
+## Practica Colecciones
+
+Para una remisería resolver
+- dado un color, la cantidad de autos de ese color.
+  P.ej. remiseriaCachito.cantidadDeAutosDeColor("rojo")
+- dada una cantidad de pasajeros, si hay o no al menos un auto que pueda llevar exactamente esa cantidad.
+  P.ej. remiseriaCachito.hayAutosDeCapacidadExacta(5)
+- el conjunto de colores de los autos
+  P.ej. remiseriaCachito.colores()
+  Devuelve una lista de String, p.ej. ["verde", "rojo", "negro"]
+- el promedio de las velocidades máximas. 
+  P.ej. remiseriaCachito.promedioDeVelocidadesMaximas()
+  Si la remisería tiene 3 autos con velocidad máxima 100, 110 y 150, entonces tiene que devolver 120.
+  Se calcula así: suma de todas las velocidades máximas de cada vehículo, dividido cantidad de vehículos. En el ejemplo, (100 + 110 + 150) / 3 = 120
+- dado un vehículo, un conjunto de los vehículos similares a ese.
+  P.ej. si tengo
+   miCorsita = new ChevroletCorsa("rojo")
+  entonces tiene que andar esto
+  remiseriaCachito.vehiculosSimilaresA(miCorsita)
+  Para que un vehículo se considere similar al que viene por parámetro, tienen que pasar dos cosas
+  - las velocidades máximas no pueden diferir en más de 10 km/h. O sea, la velocidad máxima de un auto tiene que estar entre (vel.máxima del otro - 10) y (vel. máxima del otro + 10).
+  - tienen que ser del mismo color
+
+

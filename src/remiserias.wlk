@@ -23,5 +23,23 @@ class Remiseria {
 		return flota.max({ vehiculo => vehiculo.velocidad() }).color()
 	}
 	
+	method puedeRealizarViajeA(viajes,auto) { return auto.velocidad() >= viajes.velocidadPromedio() +10 
+		and auto.capacidad() >=  viajes.cantidadPasajeros()
+		and auto.color() != viajes.coloresIncompatibles()
+	}
+	
+	method registrarViaje(viaje,auto) {
+		
+	}
+
 }
   
+  
+class Viajes{
+	var property kms = 0
+	var property maximoHs = 0
+	var property cantidadPasajeros = 0
+	var property coloresIncompatibles = #{}
+	method velocidadPromedio() { return kms/ maximoHs}
+	method puedeRealizarViaje(auto) { auto.puedeRealizarViajeA(self)}
+}  
