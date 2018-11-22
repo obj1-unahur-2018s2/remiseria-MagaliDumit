@@ -1,7 +1,5 @@
 import remiserias.*
 
-
-
 class Autos {
 	var property capacidad = 0
 	var property velocidad = 0
@@ -19,20 +17,20 @@ class Corsa inherits Autos{
 	}
 	
 class Standard inherits Autos {
-	var property tanqueADicional = true
+	var property tanqueAdicional = true
 	
 	method capacidad(){ return
-		if ( tanqueADicional ) {return 3}
+		if ( tanqueAdicional ) {return 3}
 		else {return 4}
 	}
 	
 	method velocidad() { return
-		if ( tanqueADicional ) {return 120}
+		if ( tanqueAdicional ) {return 120}
 		else {return 110}
 	} 
 	
 	method peso() { return
-		if ( tanqueADicional ) {return 1350}
+		if ( tanqueAdicional ) {return 1350}
 		else {return 1200}
 	} 
 	 
@@ -40,11 +38,16 @@ class Standard inherits Autos {
 	
 class Trafic {
 	
+	var property interior = interiorComodo 
+	
+	var property motor = motorPulenta
+	//interiorComodo= interiorComodo.peso(),interiorComodo.capacidad()
+	 
 	method color() {return "blanco"}
-	method capacidad(interior) { interior.capacidad() }
-	method velocidad(motor) { motor.velocidad() }
-	method peso(interior,motor) { return interior.peso() + motor.peso() + 4000 }
-}	
+	method capacidad() { return interior }
+	method velocidad() {return  motor }
+	method peso() { return interior.peso() + motor.peso()  + 4000 }
+}	 
 	
 	
 	

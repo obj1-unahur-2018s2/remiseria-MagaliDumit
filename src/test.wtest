@@ -1,0 +1,87 @@
+import vehiculos.*
+import remiserias.*
+
+describe "group of tests" {
+	var cor1 = new Corsa(color = "negro")
+	var cor2 = new Corsa( color = "verde" )
+	var cachito = new Corsa( color = "rojo" )
+	
+	var standard1 = new Standard(  color = "verde" , tanqueAdicional = true)
+	var standard2 = new Standard(  color = "gris" , tanqueAdicional = false )
+	var standard3 = new Standard(  color = "negro" , tanqueAdicional = false )
+	
+	var trafic1 = new Trafic( motor = motorBataton , interior = interiorComodo )
+	
+	var distinto = new Autos( capacidad = 5, velocidad = 160, peso = 1200,color = "beige" )
+	var remiseria1 = new Remiseria( flota = #{} )
+	var remiseria2 = new Remiseria( flota = #{} ) 
+	
+	fixture{
+		trafic1.capacidad()
+		trafic1.motor()
+		trafic1.peso()
+		
+		remiseria1.agregarAFlota(cachito)
+		remiseria1.agregarAFlota(cor1)
+		remiseria1.agregarAFlota(cor2)
+		remiseria1.agregarAFlota(standard1)
+		remiseria1.agregarAFlota(distinto)
+		remiseria1.pesoTotalFlota()
+		remiseria1.esRecomendable() 
+	//	remiseria1.capacidadTotalYendoA(140)
+		remiseria1.colorDelAutoMasRapido()
+		
+		remiseria2.agregarAFlota(cachito)
+		remiseria2.agregarAFlota(standard1)
+		remiseria2.agregarAFlota(standard2)
+		remiseria2.agregarAFlota(standard3)
+		remiseria2.agregarAFlota(trafic1)
+	}
+	test "testTrafic"{
+		interiorComodo.capacidad()
+		motorBataton.velocidad()
+		interiorComodo.peso()
+		motorBataton.peso()
+		assert.equals(5,trafic1.capacidad())
+		assert.equals(80,trafic1.velocidad())
+		assert.equals(5200,trafic1.peso())
+		
+		
+	}
+	test "testResmiseria1Flota" {
+		
+		assert.equals(#{cachito,cor1,cor2,standard1,distinto}, remiseria1.flota() )
+ 		
+	}
+	test "testResmiseria2Flota" {
+		assert.equals(#{cachito,standard1,standard2,standard3,trafic1}, remiseria2.flota() )
+		
+	}
+	test "testResmiseria1PesoTotalFlota" {
+		assert.equals(6450,remiseria1.pesoTotalFlota())
+	}
+	test "testResmiseria2PesoTotalFlota" {
+		assert.equals(10250,remiseria2.pesoTotalFlota())
+	}
+	test "testResmiseria1EsRecomendable" {
+		assert.that(true)
+	}
+	test "testResmiseria2EsRecomendable" {
+		assert.notThat(false)
+	}
+	/*test "testResmiseria1CapacidadTotalYendoA(140)" {
+		assert.equals(17,remiseria1.capacidadTotalYendoA(140))
+	}
+	test "testResmiseria2CapacidadTotalYendoA(140)" {
+		assert.equals(4,remiseria2.capacidadTotalYendoA(140))
+	}*/
+	
+	test "testResmiseria1ColorDelAutoMasRapido" {
+		assert.equals("beige",remiseria1.colorDelAutoMasRapido())
+	}
+	test "testResmiseria2ColorDelAutoMasRapido" {
+		assert.equals("beige",remiseria1.colorDelAutoMasRapido())
+	}
+	
+	
+}
