@@ -9,79 +9,128 @@ describe "group of tests" {
 	var standard1 = new Standard(  color = "verde" , tanqueAdicional = true)
 	var standard2 = new Standard(  color = "gris" , tanqueAdicional = false )
 	var standard3 = new Standard(  color = "negro" , tanqueAdicional = false )
-	
-	var trafic1 = new Trafic( motor = motorBataton , interior = interiorComodo )
+	var standard4 = new Standard(  color = "verde" , tanqueAdicional = true)
+	var trafic  
 	
 	var distinto = new Autos( capacidad = 5, velocidad = 160, peso = 1200,color = "beige" )
 	var remiseria1 = new Remiseria( flota = #{} )
 	var remiseria2 = new Remiseria( flota = #{} ) 
 	
-	fixture{
-		trafic1.capacidad()
-		trafic1.motor()
-		trafic1.peso()
+	fixture{ 
+		trafic.motor(motorBataton)
+		trafic.interior(interiorComodo)
+		trafic.capacidad() 
+		trafic.motor()  
+		trafic.peso()
 		
 		remiseria1.agregarAFlota(cachito)
 		remiseria1.agregarAFlota(cor1)
 		remiseria1.agregarAFlota(cor2)
-		remiseria1.agregarAFlota(standard1)
+		remiseria1.agregarAFlota(standard4)
 		remiseria1.agregarAFlota(distinto)
 		remiseria1.pesoTotalFlota()
 		remiseria1.esRecomendable() 
 		remiseria1.capacidadTotalYendoA(140)
 		remiseria1.colorDelAutoMasRapido()
+		remiseria1.colores()
+		remiseria1.promedioDeVelocidadesMaximas()
+		remiseria1.autosSimilares(cachito)
+		remiseria1.hayAutosDeCapacidadExacta(4)
+		
+		
 		
 		remiseria2.agregarAFlota(cachito)
 		remiseria2.agregarAFlota(standard1)
 		remiseria2.agregarAFlota(standard2)
 		remiseria2.agregarAFlota(standard3)
-		remiseria2.agregarAFlota(trafic1)
+		remiseria2.agregarAFlota(trafic)
+		remiseria2.colores()
+		remiseria2.promedioDeVelocidadesMaximas()
+		remiseria2.autosSimilares(cachito)
+		remiseria2.hayAutosDeCapacidadExacta(4)
 	}
 	test "testTrafic"{
+		assert.equals(motorBataton, trafic.motor() )
+		assert.equals(interiorComodo,trafic.interior())
+		
 		interiorComodo.capacidad()
 		motorBataton.velocidad()
 		interiorComodo.peso()
 		motorBataton.peso()
-		assert.equals(5,trafic1.capacidad())
-		assert.equals(80,trafic1.velocidad())
-		assert.equals(5200,trafic1.peso())
+		
+		assert.equals(5,trafic.capacidad())
+		assert.equals(80,trafic.velocidad())
+		assert.equals(5200,trafic.peso())
 		
 		
 	}
 	test "testResmiseria1Flota" {
 		
-		assert.equals(#{cachito,cor1,cor2,standard1,distinto}, remiseria1.flota() )
+		assert.equals(#{cachito,cor1,cor2,standard4,distinto}, remiseria1.flota() )
  		
 	}
-	test "testResmiseria2Flota" {
-		assert.equals(#{cachito,standard1,standard2,standard3,trafic1}, remiseria2.flota() )
-		
-	}
+	
 	test "testResmiseria1PesoTotalFlota" {
 		assert.equals(6450,remiseria1.pesoTotalFlota())
 	}
-	test "testResmiseria2PesoTotalFlota" {
-		assert.equals(10250,remiseria2.pesoTotalFlota())
-	}
+	
 	test "testResmiseria1EsRecomendable" {
-		assert.that(true)
+		assert.that(remiseria1.esRecomendable() )
 	}
-	test "testResmiseria2EsRecomendable" {
-		assert.notThat(false)
-	}
+	
 	test "testResmiseria1CapacidadTotalYendoA(140)" {
 		assert.equals(17,remiseria1.capacidadTotalYendoA(140))
-	}
-	test "testResmiseria2CapacidadTotalYendoA(140)" {
-		assert.equals(4,remiseria2.capacidadTotalYendoA(140))
 	}
 	
 	test "testResmiseria1ColorDelAutoMasRapido" {
 		assert.equals("beige",remiseria1.colorDelAutoMasRapido())
 	}
+	test " testColores1" {
+		assert.equals(#{"beige","negro","rojo","verde"} ,remiseria1.colores())
+	}
+	test " testPromedioDeVelocidadesMaximas1"{
+		assert.equals(146, remiseria1.promedioDeVelocidadesMaximas() )
+	}
+	test " testAutosSimilares1" {
+		assert.equals(#{},remiseria1.autosSimilares(cor2))
+	}
+	test " testHayAutosDeCapacidadExacta(4)"{
+		assert.equals(#{distinto},remiseria1.hayAutosDeCapacidadExacta(4))
+	}
+	
+	//////////////////////////////////////////////////////////////
+	
+	test "testResmiseria2Flota" {
+		assert.equals(#{cachito,standard1,standard2,standard3,trafic }, remiseria2.flota() )
+		
+	}
+	
+	test "testResmiseria2PesoTotalFlota" {
+		assert.equals(10250,remiseria2.pesoTotalFlota())
+	}
+	
+	test "testResmiseria2EsRecomendable" {
+		assert.notThat(remiseria2.esRecomendable())
+	}
+	
+	test "testResmiseria2CapacidadTotalYendoA(140)" {
+		assert.equals(4,remiseria2.capacidadTotalYendoA(140))
+	}
+	
 	test "testResmiseria2ColorDelAutoMasRapido" {
 		assert.equals("beige",remiseria1.colorDelAutoMasRapido())
 	}
-	
+	test " testColores2" {
+		assert.equals(#{"gris","verde","rojo","negro","blanco"} ,remiseria2.colores())
+	}
+	test " testPromedioDeVelocidadesMaximas2"{
+		assert.equals(114, remiseria2.promedioDeVelocidadesMaximas() )
+	}
+	test " testAutosSimilares2" {
+		assert.equals(#{},remiseria2.autosSimilares(standard1))
+	}
+	test " testHayAutosDeCapacidadExacta(4)2"{
+		assert.equals(#{trafic},remiseria2.hayAutosDeCapacidadExacta(4))
+	}
 	
 }

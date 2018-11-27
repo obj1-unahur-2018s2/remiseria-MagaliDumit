@@ -6,19 +6,19 @@ class Autos {
 	var property peso = 0
 	var property color = ""
 	
-	
 }
 
 
-class Corsa inherits Autos{
-	
+class Corsa {
+	var property color = ""
 	method capacidad(){ return 4 }
 	method velocidad() { return 150 } 
 	method peso() { return 1300 }
 	
 	}
 	
-class Standard inherits Autos {
+class Standard {
+	var property color = ""
 	var property tanqueAdicional = true
 	
 	method capacidad(){ return
@@ -38,10 +38,9 @@ class Standard inherits Autos {
 	 
 	}
 	
-class Trafic {
+object trafic {
 	
 	var property interior = interiorComodo 
-	
 	var property motor = motorPulenta
 	//interiorComodo= interiorComodo.peso(),interiorComodo.capacidad()
 	 
@@ -50,8 +49,6 @@ class Trafic {
 	method velocidad() {return  motor.velocidad() }
 	method peso() { return interior.peso() + motor.peso()  + 4000 }
 }	 
-	
-	
 	
 object interiorComodo {
 	method peso() { return 700 } 
